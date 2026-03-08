@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magic Food - Flyer Híbrido</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:," />
+</head>
+<body>
+  <div class="app">
+    <div class="layout">
+      <section class="editor">
+        <h1>Generador Flyer Magic Food</h1>
+        <p class="sub">
+          Editá el menú, la promo y descargá la imagen lista para WhatsApp.
+        </p>
+
+        <div class="grid">
+          <div class="field full">
+            <label for="inputTitulo">Título</label>
+            <input id="inputTitulo" type="text" placeholder="MENÚ DEL DÍA" />
+          </div>
+
+          <div class="field">
+            <label for="inputPrecio">Precio por menú</label>
+            <input id="inputPrecio" type="text" placeholder="$6500" />
+          </div>
+
+          <div class="field">
+            <label for="inputTelefono">Teléfono</label>
+            <input id="inputTelefono" type="text" placeholder="3815843427" />
+          </div>
+
+          <div class="field">
+            <label for="inputPromoTitulo">Título promo</label>
+            <input id="inputPromoTitulo" type="text" placeholder="PROMO ESPECIAL" />
+          </div>
+
+          <div class="field">
+            <label for="inputPromoPrecio">Precio promo</label>
+            <input id="inputPromoPrecio" type="text" placeholder="3 MENÚS x $17.000" />
+          </div>
+
+          <div class="field full">
+            <label for="inputPromoTexto">Texto promo</label>
+            <input id="inputPromoTexto" type="text" placeholder="¡Armala como quieras!" />
+          </div>
+
+          <div class="field full">
+            <label for="inputPlato1">Plato 1</label>
+            <input id="inputPlato1" type="text" placeholder="Milanesa con puré" />
+          </div>
+
+          <div class="field full">
+            <label for="inputPlato2">Plato 2</label>
+            <input id="inputPlato2" type="text" placeholder="Pollo con arroz" />
+          </div>
+
+          <div class="field full">
+            <label for="inputPlato3">Plato 3</label>
+            <input id="inputPlato3" type="text" placeholder="Tarta de verdura" />
+          </div>
+
+          <div class="field full">
+            <label for="inputPlato4">Plato 4</label>
+            <input id="inputPlato4" type="text" placeholder="Albóndigas con fideos" />
+          </div>
+
+          <div class="field full">
+            <label for="inputPlato5">Plato 5</label>
+            <input id="inputPlato5" type="text" placeholder="Polenta con salsa boloñesa" />
+          </div>
+
+          <div class="field">
+            <label for="inputDireccion">Dirección</label>
+            <input id="inputDireccion" type="text" placeholder="La Rioja 619 P. B." />
+          </div>
+
+          <div class="field">
+            <label for="inputAlias">Alias</label>
+            <input id="inputAlias" type="text" placeholder="Magic.alpaso" />
+          </div>
+
+          <div class="field">
+            <label for="inputInstagram">Instagram</label>
+            <input id="inputInstagram" type="text" placeholder="@magicfoodbs" />
+          </div>
+
+          <div class="field">
+            <label for="inputFudo">Fudo</label>
+            <input id="inputFudo" type="text" placeholder="menu.fu.do/magicfoodalpaso" />
+          </div>
+
+          <div class="field full">
+            <label for="inputExtra">Texto extra</label>
+            <input id="inputExtra" type="text" placeholder="¡Envíos sin cargo!" />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="btnGuardar" class="btn primary" type="button">Guardar</button>
+          <button id="btnDescargar" class="btn warning" type="button">Descargar imagen</button>
+        </div>
+      </section>
+
+      <section class="preview-wrap">
+        <div class="preview-frame">
+          <div class="flyer" id="flyer">
+            <div class="flyer-bg-local"></div>
+            <div class="flyer-bg-overlay"></div>
+
+            <div class="logo-plate"></div>
+            <div class="logo-line"></div>
+
+            <div class="logo-wrap">
+              <img src="img/logo-magic.png" alt="Logo Magic Food" class="logo-top" />
+            </div>
+
+            <h2 id="tituloFlyer" class="titulo-flyer">MENÚ DEL DÍA</h2>
+
+            <div id="precioFlyer" class="precio-flyer">$6500</div>
+
+            <div class="menu-list">
+              <div class="menu-item">
+                <span class="diamond">◆</span>
+                <span id="plato1Flyer" class="menu-text">Milanesa con puré</span>
+                <span id="precio1Flyer" class="menu-price">$6500</span>
+              </div>
+
+              <div class="menu-item">
+                <span class="diamond">◆</span>
+                <span id="plato2Flyer" class="menu-text">Pollo con arroz</span>
+                <span id="precio2Flyer" class="menu-price">$6500</span>
+              </div>
+
+              <div class="menu-item">
+                <span class="diamond">◆</span>
+                <span id="plato3Flyer" class="menu-text">Tarta de verdura</span>
+                <span id="precio3Flyer" class="menu-price">$6500</span>
+              </div>
+
+              <div class="menu-item">
+                <span class="diamond">◆</span>
+                <span id="plato4Flyer" class="menu-text">Albóndigas con fideos</span>
+                <span id="precio4Flyer" class="menu-price">$6500</span>
+              </div>
+
+              <div class="menu-item">
+                <span class="diamond">◆</span>
+                <span id="plato5Flyer" class="menu-text">Polenta con salsa boloñesa</span>
+                <span id="precio5Flyer" class="menu-price">$6500</span>
+              </div>
+            </div>
+
+            <div id="promoBox" class="promo-box">
+              <div id="promoTituloFlyer" class="promo-top">PROMO ESPECIAL</div>
+              <div id="promoPrecioFlyer" class="promo-price">3 MENÚS x $17.000</div>
+              <div id="promoTextoFlyer" class="promo-bottom">¡Armala como quieras!</div>
+            </div>
+
+            <div class="info-box">
+              <div id="direccionFlyer" class="info-line">📍 La Rioja 619 P. B.</div>
+              <div id="telefonoFlyer" class="info-line">📞 3815843427</div>
+              <div id="aliasFlyer" class="info-line">💳 Alias: Magic.alpaso</div>
+              <div id="instagramFlyer" class="info-line">📷 @magicfoodbs</div>
+              <div id="fudoFlyer" class="info-line link-line">🌐 menu.fu.do/magicfoodalpaso</div>
+              <div id="extraFlyer" class="info-line extra-line">✓ ¡Envíos sin cargo!</div>
+            </div>
+
+            <div class="cta-box">
+              <div class="cta-pill">
+                <div class="cta-title">ENTRÁ AL ENLACE Y HACÉ TU PEDIDO</div>
+              </div>
+            </div>
+
+            <img src="img/moto-magic.png" alt="Moto Magic Food" class="moto-bottom" />
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
