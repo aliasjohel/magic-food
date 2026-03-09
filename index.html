@@ -33,6 +33,16 @@
           </div>
 
           <div class="field">
+            <label for="inputOpcionLigera">Opción ligera</label>
+            <input id="inputOpcionLigera" type="text" placeholder="OPCIÓN LIGERA" />
+          </div>
+
+          <div class="field">
+            <label for="inputOpcionClasica">Opción clásica</label>
+            <input id="inputOpcionClasica" type="text" placeholder="OPCIÓN CLÁSICA" />
+          </div>
+
+          <div class="field">
             <label for="inputPromoTitulo">Título promo</label>
             <input id="inputPromoTitulo" type="text" placeholder="PROMO ESPECIAL" />
           </div>
@@ -51,25 +61,36 @@
             <label for="inputPlato1">Plato 1</label>
             <input id="inputPlato1" type="text" placeholder="Milanesa con puré" />
           </div>
+          <div class="field full">
+            <label for="inputImg1">Imagen plato 1</label>
+            <input id="inputImg1" type="file" accept="image/*" />
+          </div>
 
           <div class="field full">
             <label for="inputPlato2">Plato 2</label>
             <input id="inputPlato2" type="text" placeholder="Pollo con arroz" />
+          </div>
+          <div class="field full">
+            <label for="inputImg2">Imagen plato 2</label>
+            <input id="inputImg2" type="file" accept="image/*" />
           </div>
 
           <div class="field full">
             <label for="inputPlato3">Plato 3</label>
             <input id="inputPlato3" type="text" placeholder="Tarta de verdura" />
           </div>
+          <div class="field full">
+            <label for="inputImg3">Imagen plato 3</label>
+            <input id="inputImg3" type="file" accept="image/*" />
+          </div>
 
           <div class="field full">
             <label for="inputPlato4">Plato 4</label>
             <input id="inputPlato4" type="text" placeholder="Albóndigas con fideos" />
           </div>
-
           <div class="field full">
-            <label for="inputPlato5">Plato 5</label>
-            <input id="inputPlato5" type="text" placeholder="Polenta con salsa boloñesa" />
+            <label for="inputImg4">Imagen plato 4</label>
+            <input id="inputImg4" type="file" accept="image/*" />
           </div>
 
           <div class="field">
@@ -118,38 +139,53 @@
             </div>
 
             <h2 id="tituloFlyer" class="titulo-flyer">MENÚ DEL DÍA</h2>
-
             <div id="precioFlyer" class="precio-flyer">$6500</div>
+
+            <div class="option-strip" id="optionStrip">
+              <div class="option-item" id="opcionLigeraFlyer">
+                <span class="option-emoji">🥗</span>
+                <span class="option-text">OPCIÓN LIGERA</span>
+              </div>
+
+              <div class="option-sep" id="optionSep"></div>
+
+              <div class="option-item" id="opcionClasicaFlyer">
+                <span class="option-text">OPCIÓN CLÁSICA</span>
+                <span class="option-emoji">🍝</span>
+              </div>
+            </div>
 
             <div class="menu-list">
               <div class="menu-item">
                 <span class="diamond">◆</span>
                 <span id="plato1Flyer" class="menu-text">Milanesa con puré</span>
-                <span id="precio1Flyer" class="menu-price">$6500</span>
+                <div class="menu-thumb-wrap">
+                  <img id="img1Flyer" class="menu-thumb" alt="Imagen plato 1" />
+                </div>
               </div>
 
               <div class="menu-item">
                 <span class="diamond">◆</span>
                 <span id="plato2Flyer" class="menu-text">Pollo con arroz</span>
-                <span id="precio2Flyer" class="menu-price">$6500</span>
+                <div class="menu-thumb-wrap">
+                  <img id="img2Flyer" class="menu-thumb" alt="Imagen plato 2" />
+                </div>
               </div>
 
               <div class="menu-item">
                 <span class="diamond">◆</span>
                 <span id="plato3Flyer" class="menu-text">Tarta de verdura</span>
-                <span id="precio3Flyer" class="menu-price">$6500</span>
+                <div class="menu-thumb-wrap">
+                  <img id="img3Flyer" class="menu-thumb" alt="Imagen plato 3" />
+                </div>
               </div>
 
               <div class="menu-item">
                 <span class="diamond">◆</span>
                 <span id="plato4Flyer" class="menu-text">Albóndigas con fideos</span>
-                <span id="precio4Flyer" class="menu-price">$6500</span>
-              </div>
-
-              <div class="menu-item">
-                <span class="diamond">◆</span>
-                <span id="plato5Flyer" class="menu-text">Polenta con salsa boloñesa</span>
-                <span id="precio5Flyer" class="menu-price">$6500</span>
+                <div class="menu-thumb-wrap">
+                  <img id="img4Flyer" class="menu-thumb" alt="Imagen plato 4" />
+                </div>
               </div>
             </div>
 
@@ -159,13 +195,23 @@
               <div id="promoTextoFlyer" class="promo-bottom">¡Armala como quieras!</div>
             </div>
 
-            <div class="info-box">
-              <div id="direccionFlyer" class="info-line">📍 La Rioja 619 P. B.</div>
-              <div id="telefonoFlyer" class="info-line">📞 3815843427</div>
-              <div id="aliasFlyer" class="info-line">💳 Alias: Magic.alpaso</div>
-              <div id="instagramFlyer" class="info-line">📷 @magicfoodbs</div>
-              <div id="fudoFlyer" class="info-line link-line">🌐 menu.fu.do/magicfoodalpaso</div>
-              <div id="extraFlyer" class="info-line extra-line">✓ ¡Envíos sin cargo!</div>
+            <div class="bottom-area" id="bottomArea">
+              <div class="info-box">
+                <div id="direccionFlyer" class="info-line">📍 La Rioja 619 P. B.</div>
+                <div id="telefonoFlyer" class="info-line">📞 3815843427</div>
+                <div id="aliasFlyer" class="info-line">💳 Alias: Magic.alpaso</div>
+                <div id="instagramFlyer" class="info-line">📷 @magicfoodbs</div>
+                <div id="fudoFlyer" class="info-line link-line">🌐 menu.fu.do/magicfoodalpaso</div>
+                <div id="extraFlyer" class="info-line extra-line">✓ ¡Envíos sin cargo!</div>
+              </div>
+
+              <div class="moto-side-box">
+                <img src="img/moto-magic.png" alt="Moto Magic Food" class="moto-side" />
+              </div>
+            </div>
+
+            <div class="qr-box">
+              <img src="img/qr-fudo.png" alt="QR Fudo" class="qr-img" />
             </div>
 
             <div class="cta-box">
@@ -173,8 +219,6 @@
                 <div class="cta-title">ENTRÁ AL ENLACE Y HACÉ TU PEDIDO</div>
               </div>
             </div>
-
-            <img src="img/moto-magic.png" alt="Moto Magic Food" class="moto-bottom" />
           </div>
         </div>
       </section>
