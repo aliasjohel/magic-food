@@ -534,4 +534,18 @@ input:focus{
   .grid{
     grid-template-columns:1fr;
   }
+
+  .btn.secondary{
+  background:#e9ecef;
+  color:#5b4334;
+  border:2px solid #d8c2ad;
+}
+
+.btn.secondary:hover{
+  background:#dde2e6;
+}
+
+.btn-inline{
+  margin-top:10px;
+}
 }

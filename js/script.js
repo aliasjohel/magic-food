@@ -46,7 +46,10 @@ const defaultData = {
   extra: "¡Envíos sin cargo!"
 };
 
-let data = loadJSON("magicFoodHibrido", defaultData);
+const STORAGE_HOY = "magicFoodHibrido";
+const STORAGE_AYER = "magicFoodHibrido_ayer";
+
+let data = loadJSON(STORAGE_HOY, defaultData);
 
 const refs = {
   inputTitulo: $("inputTitulo"),
@@ -97,31 +100,37 @@ const refs = {
   bottomArea: $("bottomArea"),
 
   btnGuardar: $("btnGuardar"),
+  btnDuplicarAyer: $("btnDuplicarAyer"),
+  btnDeleteImg1: $("btnDeleteImg1"),
+  btnDeleteImg2: $("btnDeleteImg2"),
+  btnDeleteImg3: $("btnDeleteImg3"),
+  btnDeleteImg4: $("btnDeleteImg4"),
   btnDescargar: $("btnDescargar"),
   flyer: $("flyer")
 };
 
 function fillInputs() {
-  refs.inputTitulo.value = data.titulo;
-  refs.inputPrecio.value = data.precio;
-  refs.inputTelefono.value = data.telefono;
-  refs.inputOpcionLigera.value = data.opcionLigera;
-  refs.inputOpcionClasica.value = data.opcionClasica;
-  refs.inputPromoTitulo.value = data.promoTitulo;
-  refs.inputPromoPrecio.value = data.promoPrecio;
-  refs.inputPromoTexto.value = data.promoTexto;
-  refs.inputPlato1.value = data.plato1;
-  refs.inputPlato2.value = data.plato2;
-  refs.inputPlato3.value = data.plato3;
-  refs.inputPlato4.value = data.plato4;
-  refs.inputDireccion.value = data.direccion;
-  refs.inputAlias.value = data.alias;
-  refs.inputInstagram.value = data.instagram;
-  refs.inputFudo.value = data.fudo;
-  refs.inputExtra.value = data.extra;
+  if (refs.inputTitulo) refs.inputTitulo.value = data.titulo;
+  if (refs.inputPrecio) refs.inputPrecio.value = data.precio;
+  if (refs.inputTelefono) refs.inputTelefono.value = data.telefono;
+  if (refs.inputOpcionLigera) refs.inputOpcionLigera.value = data.opcionLigera;
+  if (refs.inputOpcionClasica) refs.inputOpcionClasica.value = data.opcionClasica;
+  if (refs.inputPromoTitulo) refs.inputPromoTitulo.value = data.promoTitulo;
+  if (refs.inputPromoPrecio) refs.inputPromoPrecio.value = data.promoPrecio;
+  if (refs.inputPromoTexto) refs.inputPromoTexto.value = data.promoTexto;
+  if (refs.inputPlato1) refs.inputPlato1.value = data.plato1;
+  if (refs.inputPlato2) refs.inputPlato2.value = data.plato2;
+  if (refs.inputPlato3) refs.inputPlato3.value = data.plato3;
+  if (refs.inputPlato4) refs.inputPlato4.value = data.plato4;
+  if (refs.inputDireccion) refs.inputDireccion.value = data.direccion;
+  if (refs.inputAlias) refs.inputAlias.value = data.alias;
+  if (refs.inputInstagram) refs.inputInstagram.value = data.instagram;
+  if (refs.inputFudo) refs.inputFudo.value = data.fudo;
+  if (refs.inputExtra) refs.inputExtra.value = data.extra;
 }
 
 function setLineVisibility(element, text) {
+  if (!element) return;
   element.style.display = text && text.trim() ? "block" : "none";
 }
 
@@ -138,47 +147,47 @@ function updateMenuImage(imgElement, src) {
 }
 
 function applyData() {
-  data.titulo = refs.inputTitulo.value.trim() || defaultData.titulo;
-  data.precio = refs.inputPrecio.value.trim() || defaultData.precio;
-  data.telefono = refs.inputTelefono.value.trim() || defaultData.telefono;
-  data.opcionLigera = refs.inputOpcionLigera.value.trim();
-  data.opcionClasica = refs.inputOpcionClasica.value.trim();
-  data.promoTitulo = refs.inputPromoTitulo.value.trim();
-  data.promoPrecio = refs.inputPromoPrecio.value.trim();
-  data.promoTexto = refs.inputPromoTexto.value.trim();
-  data.plato1 = refs.inputPlato1.value.trim() || defaultData.plato1;
-  data.plato2 = refs.inputPlato2.value.trim() || defaultData.plato2;
-  data.plato3 = refs.inputPlato3.value.trim() || defaultData.plato3;
-  data.plato4 = refs.inputPlato4.value.trim() || defaultData.plato4;
-  data.direccion = refs.inputDireccion.value.trim() || defaultData.direccion;
-  data.alias = refs.inputAlias.value.trim() || defaultData.alias;
-  data.instagram = refs.inputInstagram.value.trim() || defaultData.instagram;
-  data.fudo = refs.inputFudo.value.trim() || defaultData.fudo;
-  data.extra = refs.inputExtra.value.trim();
+  data.titulo = refs.inputTitulo?.value?.trim() || defaultData.titulo;
+  data.precio = refs.inputPrecio?.value?.trim() || defaultData.precio;
+  data.telefono = refs.inputTelefono?.value?.trim() || defaultData.telefono;
+  data.opcionLigera = refs.inputOpcionLigera?.value?.trim() || "";
+  data.opcionClasica = refs.inputOpcionClasica?.value?.trim() || "";
+  data.promoTitulo = refs.inputPromoTitulo?.value?.trim() || "";
+  data.promoPrecio = refs.inputPromoPrecio?.value?.trim() || "";
+  data.promoTexto = refs.inputPromoTexto?.value?.trim() || "";
+  data.plato1 = refs.inputPlato1?.value?.trim() || defaultData.plato1;
+  data.plato2 = refs.inputPlato2?.value?.trim() || defaultData.plato2;
+  data.plato3 = refs.inputPlato3?.value?.trim() || defaultData.plato3;
+  data.plato4 = refs.inputPlato4?.value?.trim() || defaultData.plato4;
+  data.direccion = refs.inputDireccion?.value?.trim() || defaultData.direccion;
+  data.alias = refs.inputAlias?.value?.trim() || defaultData.alias;
+  data.instagram = refs.inputInstagram?.value?.trim() || defaultData.instagram;
+  data.fudo = refs.inputFudo?.value?.trim() || defaultData.fudo;
+  data.extra = refs.inputExtra?.value?.trim() || "";
 
-  refs.tituloFlyer.textContent = data.titulo;
-  refs.precioFlyer.textContent = data.precio;
+  if (refs.tituloFlyer) refs.tituloFlyer.textContent = data.titulo;
+  if (refs.precioFlyer) refs.precioFlyer.textContent = data.precio;
 
-  refs.telefonoFlyer.textContent = `📞 ${data.telefono}`;
-  refs.promoTituloFlyer.textContent = data.promoTitulo || "PROMO ESPECIAL";
-  refs.promoPrecioFlyer.textContent = data.promoPrecio;
-  refs.promoTextoFlyer.textContent = data.promoTexto;
+  if (refs.telefonoFlyer) refs.telefonoFlyer.textContent = `📞 ${data.telefono}`;
+  if (refs.promoTituloFlyer) refs.promoTituloFlyer.textContent = data.promoTitulo || "PROMO ESPECIAL";
+  if (refs.promoPrecioFlyer) refs.promoPrecioFlyer.textContent = data.promoPrecio;
+  if (refs.promoTextoFlyer) refs.promoTextoFlyer.textContent = data.promoTexto;
 
-  refs.plato1Flyer.textContent = data.plato1;
-  refs.plato2Flyer.textContent = data.plato2;
-  refs.plato3Flyer.textContent = data.plato3;
-  refs.plato4Flyer.textContent = data.plato4;
+  if (refs.plato1Flyer) refs.plato1Flyer.textContent = data.plato1;
+  if (refs.plato2Flyer) refs.plato2Flyer.textContent = data.plato2;
+  if (refs.plato3Flyer) refs.plato3Flyer.textContent = data.plato3;
+  if (refs.plato4Flyer) refs.plato4Flyer.textContent = data.plato4;
 
   updateMenuImage(refs.img1Flyer, data.img1);
   updateMenuImage(refs.img2Flyer, data.img2);
   updateMenuImage(refs.img3Flyer, data.img3);
   updateMenuImage(refs.img4Flyer, data.img4);
 
-  refs.direccionFlyer.textContent = `📍 ${data.direccion}`;
-  refs.aliasFlyer.textContent = `💳 Alias: ${data.alias}`;
-  refs.instagramFlyer.textContent = `📷 ${data.instagram}`;
-  refs.fudoFlyer.textContent = `🌐 ${data.fudo}`;
-  refs.extraFlyer.textContent = `✓ ${data.extra}`;
+  if (refs.direccionFlyer) refs.direccionFlyer.textContent = `📍 ${data.direccion}`;
+  if (refs.aliasFlyer) refs.aliasFlyer.textContent = `💳 Alias: ${data.alias}`;
+  if (refs.instagramFlyer) refs.instagramFlyer.textContent = `📷 ${data.instagram}`;
+  if (refs.fudoFlyer) refs.fudoFlyer.textContent = `🌐 ${data.fudo}`;
+  if (refs.extraFlyer) refs.extraFlyer.textContent = `✓ ${data.extra}`;
 
   const ligeraText = refs.opcionLigeraFlyer?.querySelector(".option-text");
   const clasicaText = refs.opcionClasicaFlyer?.querySelector(".option-text");
@@ -205,10 +214,10 @@ function applyData() {
   }
 
   const promoHasContent = data.promoTitulo || data.promoPrecio || data.promoTexto;
-  refs.promoBox.style.display = promoHasContent ? "block" : "none";
+  if (refs.promoBox) refs.promoBox.style.display = promoHasContent ? "block" : "none";
 
-  refs.promoBox.style.top = "";
-  refs.bottomArea.style.bottom = "";
+  if (refs.promoBox) refs.promoBox.style.top = "";
+  if (refs.bottomArea) refs.bottomArea.style.bottom = "";
 
   setLineVisibility(refs.extraFlyer, data.extra);
 
@@ -231,31 +240,41 @@ function autoScaleText() {
     }
   });
 
-  refs.tituloFlyer.style.fontSize = "58px";
-  const titleLength = refs.tituloFlyer.textContent.trim().length;
-  if (titleLength > 16) refs.tituloFlyer.style.fontSize = "52px";
-  if (titleLength > 22) refs.tituloFlyer.style.fontSize = "46px";
-  if (titleLength > 30) refs.tituloFlyer.style.fontSize = "40px";
-
-  refs.precioFlyer.style.fontSize = "42px";
-  if (refs.precioFlyer.textContent.trim().length > 10) {
-    refs.precioFlyer.style.fontSize = "36px";
+  if (refs.tituloFlyer) {
+    refs.tituloFlyer.style.fontSize = "58px";
+    const titleLength = refs.tituloFlyer.textContent.trim().length;
+    if (titleLength > 16) refs.tituloFlyer.style.fontSize = "52px";
+    if (titleLength > 22) refs.tituloFlyer.style.fontSize = "46px";
+    if (titleLength > 30) refs.tituloFlyer.style.fontSize = "40px";
   }
 
-  refs.promoPrecioFlyer.style.fontSize = "44px";
-  const promoLen = refs.promoPrecioFlyer.textContent.trim().length;
-  if (promoLen > 16) refs.promoPrecioFlyer.style.fontSize = "38px";
-  if (promoLen > 22) refs.promoPrecioFlyer.style.fontSize = "34px";
-  if (promoLen > 28) refs.promoPrecioFlyer.style.fontSize = "30px";
-
-  refs.promoTituloFlyer.style.fontSize = "28px";
-  if (refs.promoTituloFlyer.textContent.trim().length > 20) {
-    refs.promoTituloFlyer.style.fontSize = "24px";
+  if (refs.precioFlyer) {
+    refs.precioFlyer.style.fontSize = "42px";
+    if (refs.precioFlyer.textContent.trim().length > 10) {
+      refs.precioFlyer.style.fontSize = "36px";
+    }
   }
 
-  refs.promoTextoFlyer.style.fontSize = "24px";
-  if (refs.promoTextoFlyer.textContent.trim().length > 26) {
-    refs.promoTextoFlyer.style.fontSize = "21px";
+  if (refs.promoPrecioFlyer) {
+    refs.promoPrecioFlyer.style.fontSize = "44px";
+    const promoLen = refs.promoPrecioFlyer.textContent.trim().length;
+    if (promoLen > 16) refs.promoPrecioFlyer.style.fontSize = "38px";
+    if (promoLen > 22) refs.promoPrecioFlyer.style.fontSize = "34px";
+    if (promoLen > 28) refs.promoPrecioFlyer.style.fontSize = "30px";
+  }
+
+  if (refs.promoTituloFlyer) {
+    refs.promoTituloFlyer.style.fontSize = "28px";
+    if (refs.promoTituloFlyer.textContent.trim().length > 20) {
+      refs.promoTituloFlyer.style.fontSize = "24px";
+    }
+  }
+
+  if (refs.promoTextoFlyer) {
+    refs.promoTextoFlyer.style.fontSize = "24px";
+    if (refs.promoTextoFlyer.textContent.trim().length > 26) {
+      refs.promoTextoFlyer.style.fontSize = "21px";
+    }
   }
 
   const infoLines = document.querySelectorAll(".info-line");
@@ -279,19 +298,70 @@ function autoScaleText() {
 }
 
 function saveData() {
-  saveJSON("magicFoodHibrido", data);
+  const menuActualGuardado = loadJSON(STORAGE_HOY, null);
+
+  if (menuActualGuardado) {
+    saveJSON(STORAGE_AYER, menuActualGuardado);
+  }
+
+  saveJSON(STORAGE_HOY, data);
   alert("Cambios guardados");
+}
+
+function duplicateYesterdayMenu() {
+  const menuAyer = loadJSON(STORAGE_AYER, null);
+  const menuHoy = loadJSON(STORAGE_HOY, null);
+  const menuBase = menuAyer || menuHoy;
+
+  if (!menuBase) {
+    alert("No hay un menú guardado para duplicar.");
+    return;
+  }
+
+  data = cloneData(menuBase);
+  fillInputs();
+  applyData();
+
+  alert(menuAyer ? "Se cargó el menú de ayer." : "Se cargó el último menú guardado.");
+}
+
+function deleteImage(key, inputElement) {
+  data[key] = "";
+
+  if (inputElement) {
+    inputElement.value = "";
+  }
+
+  applyData();
+  saveJSON(STORAGE_HOY, data);
+}
+
+function cloneData(obj) {
+  return JSON.parse(JSON.stringify(obj));
 }
 
 function handleImageUpload(file, key) {
   if (!file) return;
 
+  console.log("Archivo recibido:", file.name, "->", key);
+
   const reader = new FileReader();
+
   reader.onload = function (event) {
+    console.log("Imagen convertida correctamente:", key);
+
     data[key] = event.target.result;
+
     applyData();
-    saveJSON("magicFoodHibrido", data);
+    saveJSON(STORAGE_HOY, data);
+
+    console.log("Imagen aplicada al flyer:", key, data[key]?.slice(0, 40));
   };
+
+  reader.onerror = function () {
+    console.error("Error leyendo la imagen:", key);
+  };
+
   reader.readAsDataURL(file);
 }
 
@@ -343,6 +413,26 @@ refs.inputImg4?.addEventListener("change", (e) => handleImageUpload(e.target.fil
 refs.btnGuardar?.addEventListener("click", () => {
   applyData();
   saveData();
+});
+
+refs.btnDuplicarAyer?.addEventListener("click", () => {
+  duplicateYesterdayMenu();
+});
+
+refs.btnDeleteImg1?.addEventListener("click", () => {
+  deleteImage("img1", refs.inputImg1);
+});
+
+refs.btnDeleteImg2?.addEventListener("click", () => {
+  deleteImage("img2", refs.inputImg2);
+});
+
+refs.btnDeleteImg3?.addEventListener("click", () => {
+  deleteImage("img3", refs.inputImg3);
+});
+
+refs.btnDeleteImg4?.addEventListener("click", () => {
+  deleteImage("img4", refs.inputImg4);
 });
 
 refs.btnDescargar?.addEventListener("click", async () => {
