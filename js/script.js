@@ -106,27 +106,29 @@ const refs = {
   btnDeleteImg3: $("btnDeleteImg3"),
   btnDeleteImg4: $("btnDeleteImg4"),
   btnDescargar: $("btnDescargar"),
-  flyer: $("flyer")
+  flyer: $("flyer"),
+
+  menuList: document.querySelector(".menu-list")
 };
 
 function fillInputs() {
-  if (refs.inputTitulo) refs.inputTitulo.value = data.titulo;
-  if (refs.inputPrecio) refs.inputPrecio.value = data.precio;
-  if (refs.inputTelefono) refs.inputTelefono.value = data.telefono;
-  if (refs.inputOpcionLigera) refs.inputOpcionLigera.value = data.opcionLigera;
-  if (refs.inputOpcionClasica) refs.inputOpcionClasica.value = data.opcionClasica;
-  if (refs.inputPromoTitulo) refs.inputPromoTitulo.value = data.promoTitulo;
-  if (refs.inputPromoPrecio) refs.inputPromoPrecio.value = data.promoPrecio;
-  if (refs.inputPromoTexto) refs.inputPromoTexto.value = data.promoTexto;
-  if (refs.inputPlato1) refs.inputPlato1.value = data.plato1;
-  if (refs.inputPlato2) refs.inputPlato2.value = data.plato2;
-  if (refs.inputPlato3) refs.inputPlato3.value = data.plato3;
-  if (refs.inputPlato4) refs.inputPlato4.value = data.plato4;
-  if (refs.inputDireccion) refs.inputDireccion.value = data.direccion;
-  if (refs.inputAlias) refs.inputAlias.value = data.alias;
-  if (refs.inputInstagram) refs.inputInstagram.value = data.instagram;
-  if (refs.inputFudo) refs.inputFudo.value = data.fudo;
-  if (refs.inputExtra) refs.inputExtra.value = data.extra;
+  if (refs.inputTitulo) refs.inputTitulo.value = data.titulo ?? "";
+  if (refs.inputPrecio) refs.inputPrecio.value = data.precio ?? "";
+  if (refs.inputTelefono) refs.inputTelefono.value = data.telefono ?? "";
+  if (refs.inputOpcionLigera) refs.inputOpcionLigera.value = data.opcionLigera ?? "";
+  if (refs.inputOpcionClasica) refs.inputOpcionClasica.value = data.opcionClasica ?? "";
+  if (refs.inputPromoTitulo) refs.inputPromoTitulo.value = data.promoTitulo ?? "";
+  if (refs.inputPromoPrecio) refs.inputPromoPrecio.value = data.promoPrecio ?? "";
+  if (refs.inputPromoTexto) refs.inputPromoTexto.value = data.promoTexto ?? "";
+  if (refs.inputPlato1) refs.inputPlato1.value = data.plato1 ?? "";
+  if (refs.inputPlato2) refs.inputPlato2.value = data.plato2 ?? "";
+  if (refs.inputPlato3) refs.inputPlato3.value = data.plato3 ?? "";
+  if (refs.inputPlato4) refs.inputPlato4.value = data.plato4 ?? "";
+  if (refs.inputDireccion) refs.inputDireccion.value = data.direccion ?? "";
+  if (refs.inputAlias) refs.inputAlias.value = data.alias ?? "";
+  if (refs.inputInstagram) refs.inputInstagram.value = data.instagram ?? "";
+  if (refs.inputFudo) refs.inputFudo.value = data.fudo ?? "";
+  if (refs.inputExtra) refs.inputExtra.value = data.extra ?? "";
 }
 
 function setLineVisibility(element, text) {
@@ -146,114 +148,40 @@ function updateMenuImage(imgElement, src) {
   }
 }
 
-function applyData() {
-  data.titulo = refs.inputTitulo?.value?.trim() || defaultData.titulo;
-  data.precio = refs.inputPrecio?.value?.trim() || defaultData.precio;
-  data.telefono = refs.inputTelefono?.value?.trim() || defaultData.telefono;
-  data.opcionLigera = refs.inputOpcionLigera?.value?.trim() || "";
-  data.opcionClasica = refs.inputOpcionClasica?.value?.trim() || "";
-  data.promoTitulo = refs.inputPromoTitulo?.value?.trim() || "";
-  data.promoPrecio = refs.inputPromoPrecio?.value?.trim() || "";
-  data.promoTexto = refs.inputPromoTexto?.value?.trim() || "";
-  data.plato1 = refs.inputPlato1?.value?.trim() || "";
-  data.plato2 = refs.inputPlato2?.value?.trim() || "";
-  data.plato3 = refs.inputPlato3?.value?.trim() || "";
-  data.plato4 = refs.inputPlato4?.value?.trim() || "";
-  data.direccion = refs.inputDireccion?.value?.trim() || defaultData.direccion;
-  data.alias = refs.inputAlias?.value?.trim() || defaultData.alias;
-  data.instagram = refs.inputInstagram?.value?.trim() || defaultData.instagram;
-  data.fudo = refs.inputFudo?.value?.trim() || defaultData.fudo;
-  data.extra = refs.inputExtra?.value?.trim() || "";
-
-  if (refs.tituloFlyer) refs.tituloFlyer.textContent = data.titulo;
-  if (refs.precioFlyer) refs.precioFlyer.textContent = data.precio;
-
-  if (refs.telefonoFlyer) refs.telefonoFlyer.textContent = `📞 ${data.telefono}`;
-  if (refs.promoTituloFlyer) refs.promoTituloFlyer.textContent = data.promoTitulo || "PROMO ESPECIAL";
-  if (refs.promoPrecioFlyer) refs.promoPrecioFlyer.textContent = data.promoPrecio;
-  if (refs.promoTextoFlyer) refs.promoTextoFlyer.textContent = data.promoTexto;
-
- function toggleMenuItem(textElement, text) {
+function toggleMenuItem(textElement, text) {
   if (!textElement) return;
 
   const container = textElement.closest(".menu-item");
+  if (!container) return;
 
   if (text && text.trim()) {
     textElement.textContent = text;
-    if (container) container.style.display = "grid";
+    container.style.display = "grid";
   } else {
-    if (container) container.style.display = "none";
+    textElement.textContent = "";
+    container.style.display = "none";
   }
-}
-
-toggleMenuItem(refs.plato1Flyer, data.plato1);
-toggleMenuItem(refs.plato2Flyer, data.plato2);
-toggleMenuItem(refs.plato3Flyer, data.plato3);
-toggleMenuItem(refs.plato4Flyer, data.plato4);
-
-  updateMenuImage(refs.img1Flyer, data.img1);
-  updateMenuImage(refs.img2Flyer, data.img2);
-  updateMenuImage(refs.img3Flyer, data.img3);
-  updateMenuImage(refs.img4Flyer, data.img4);
-
-  if (refs.direccionFlyer) refs.direccionFlyer.textContent = `📍 ${data.direccion}`;
-  if (refs.aliasFlyer) refs.aliasFlyer.textContent = `💳 Alias: ${data.alias}`;
-  if (refs.instagramFlyer) refs.instagramFlyer.textContent = `📷 ${data.instagram}`;
-  if (refs.fudoFlyer) refs.fudoFlyer.textContent = `🌐 ${data.fudo}`;
-  if (refs.extraFlyer) refs.extraFlyer.textContent = `✓ ${data.extra}`;
-
-  const ligeraText = refs.opcionLigeraFlyer?.querySelector(".option-text");
-  const clasicaText = refs.opcionClasicaFlyer?.querySelector(".option-text");
-
-  if (ligeraText) {
-    ligeraText.textContent = data.opcionLigera || defaultData.opcionLigera;
-  }
-
-  if (clasicaText) {
-    clasicaText.textContent = data.opcionClasica || defaultData.opcionClasica;
-  }
-
-  if (refs.opcionLigeraFlyer) {
-    refs.opcionLigeraFlyer.style.display = data.opcionLigera ? "flex" : "none";
-  }
-
-  if (refs.opcionClasicaFlyer) {
-    refs.opcionClasicaFlyer.style.display = data.opcionClasica ? "flex" : "none";
-  }
-
-  if (refs.optionSep) {
-    const mostrarSeparador = data.opcionLigera && data.opcionClasica;
-    refs.optionSep.style.display = mostrarSeparador ? "block" : "none";
-  }
-
-  const promoHasContent = data.promoTitulo || data.promoPrecio || data.promoTexto;
-  if (refs.promoBox) refs.promoBox.style.display = promoHasContent ? "block" : "none";
-
-  if (refs.promoBox) refs.promoBox.style.top = "";
-  if (refs.bottomArea) refs.bottomArea.style.bottom = "";
-
-  setLineVisibility(refs.extraFlyer, data.extra);
-
-  autoScaleText();
 }
 
 function autoScaleText() {
- const menuTexts = document.querySelectorAll(".menu-text");
+  const menuTexts = document.querySelectorAll(".menu-text");
 
-menuTexts.forEach((item) => {
-  item.style.fontSize = "46px";
-  const length = item.textContent.trim().length;
+  menuTexts.forEach((item) => {
+    if (item.closest(".menu-item")?.style.display === "none") return;
 
-  if (length > 60) {
-    item.style.fontSize = "30px";
-  } else if (length > 48) {
-    item.style.fontSize = "34px";
-  } else if (length > 38) {
-    item.style.fontSize = "38px";
-  } else if (length > 28) {
-    item.style.fontSize = "42px";
-  }
-});
+    item.style.fontSize = "46px";
+    const length = item.textContent.trim().length;
+
+    if (length > 60) {
+      item.style.fontSize = "30px";
+    } else if (length > 48) {
+      item.style.fontSize = "34px";
+    } else if (length > 38) {
+      item.style.fontSize = "38px";
+    } else if (length > 28) {
+      item.style.fontSize = "42px";
+    }
+  });
 
   if (refs.tituloFlyer) {
     refs.tituloFlyer.style.fontSize = "58px";
@@ -295,9 +223,11 @@ menuTexts.forEach((item) => {
   const infoLines = document.querySelectorAll(".info-line");
   infoLines.forEach((line) => {
     line.style.fontSize = line.classList.contains("link-line") ? "21px" : "25px";
+
     if (line.textContent.trim().length > 34) {
       line.style.fontSize = line.classList.contains("link-line") ? "18px" : "22px";
     }
+
     if (line.textContent.trim().length > 48) {
       line.style.fontSize = line.classList.contains("link-line") ? "16px" : "19px";
     }
@@ -309,6 +239,131 @@ menuTexts.forEach((item) => {
     const len = text.textContent.trim().length;
     if (len > 18) text.style.fontSize = "22px";
     if (len > 26) text.style.fontSize = "18px";
+  });
+}
+
+function updateDynamicLayout() {
+  const menuList = refs.menuList;
+  const promoBox = refs.promoBox;
+  const bottomArea = refs.bottomArea;
+
+  if (!menuList || !bottomArea) return;
+
+  const visibleMenuItems = Array.from(menuList.querySelectorAll(".menu-item")).filter(
+    (item) => getComputedStyle(item).display !== "none"
+  );
+
+  if (visibleMenuItems.length === 0) {
+    if (promoBox) {
+      promoBox.style.top = "520px";
+    }
+    bottomArea.style.top = promoBox && getComputedStyle(promoBox).display !== "none" ? "720px" : "620px";
+    return;
+  }
+
+  const lastVisibleItem = visibleMenuItems[visibleMenuItems.length - 1];
+  const menuBottom = lastVisibleItem.offsetTop + lastVisibleItem.offsetHeight;
+
+  const gapAfterMenu = 24;
+  const gapAfterPromo = 22;
+
+  if (promoBox && getComputedStyle(promoBox).display !== "none") {
+    const promoTop = menuList.offsetTop + menuBottom + gapAfterMenu;
+    promoBox.style.top = `${promoTop}px`;
+
+    requestAnimationFrame(() => {
+      const promoHeight = promoBox.offsetHeight;
+      const promoBottom = promoTop + promoHeight;
+      bottomArea.style.top = `${promoBottom + gapAfterPromo}px`;
+    });
+  } else {
+    bottomArea.style.top = `${menuList.offsetTop + menuBottom + 26}px`;
+  }
+}
+
+function applyData() {
+  data.titulo = refs.inputTitulo?.value?.trim() || defaultData.titulo;
+  data.precio = refs.inputPrecio?.value?.trim() || defaultData.precio;
+  data.telefono = refs.inputTelefono?.value?.trim() || defaultData.telefono;
+  data.opcionLigera = refs.inputOpcionLigera?.value?.trim() || "";
+  data.opcionClasica = refs.inputOpcionClasica?.value?.trim() || "";
+  data.promoTitulo = refs.inputPromoTitulo?.value?.trim() || "";
+  data.promoPrecio = refs.inputPromoPrecio?.value?.trim() || "";
+  data.promoTexto = refs.inputPromoTexto?.value?.trim() || "";
+
+  data.plato1 = refs.inputPlato1?.value?.trim() || "";
+  data.plato2 = refs.inputPlato2?.value?.trim() || "";
+  data.plato3 = refs.inputPlato3?.value?.trim() || "";
+  data.plato4 = refs.inputPlato4?.value?.trim() || "";
+
+  data.direccion = refs.inputDireccion?.value?.trim() || defaultData.direccion;
+  data.alias = refs.inputAlias?.value?.trim() || defaultData.alias;
+  data.instagram = refs.inputInstagram?.value?.trim() || defaultData.instagram;
+  data.fudo = refs.inputFudo?.value?.trim() || defaultData.fudo;
+  data.extra = refs.inputExtra?.value?.trim() || "";
+
+  if (refs.tituloFlyer) refs.tituloFlyer.textContent = data.titulo;
+  if (refs.precioFlyer) refs.precioFlyer.textContent = data.precio;
+
+  if (refs.telefonoFlyer) refs.telefonoFlyer.textContent = `📞 ${data.telefono}`;
+  if (refs.promoTituloFlyer) refs.promoTituloFlyer.textContent = data.promoTitulo || "PROMO ESPECIAL";
+  if (refs.promoPrecioFlyer) refs.promoPrecioFlyer.textContent = data.promoPrecio;
+  if (refs.promoTextoFlyer) refs.promoTextoFlyer.textContent = data.promoTexto;
+
+  toggleMenuItem(refs.plato1Flyer, data.plato1);
+  toggleMenuItem(refs.plato2Flyer, data.plato2);
+  toggleMenuItem(refs.plato3Flyer, data.plato3);
+  toggleMenuItem(refs.plato4Flyer, data.plato4);
+
+  updateMenuImage(refs.img1Flyer, data.img1);
+  updateMenuImage(refs.img2Flyer, data.img2);
+  updateMenuImage(refs.img3Flyer, data.img3);
+  updateMenuImage(refs.img4Flyer, data.img4);
+
+  if (refs.direccionFlyer) refs.direccionFlyer.textContent = `📍 ${data.direccion}`;
+  if (refs.aliasFlyer) refs.aliasFlyer.textContent = `💳 Alias: ${data.alias}`;
+  if (refs.instagramFlyer) refs.instagramFlyer.textContent = `📷 ${data.instagram}`;
+  if (refs.fudoFlyer) refs.fudoFlyer.textContent = `🌐 ${data.fudo}`;
+  if (refs.extraFlyer) refs.extraFlyer.textContent = `✓ ${data.extra}`;
+
+  const ligeraText = refs.opcionLigeraFlyer?.querySelector(".option-text");
+  const clasicaText = refs.opcionClasicaFlyer?.querySelector(".option-text");
+
+  if (ligeraText) {
+    ligeraText.textContent = data.opcionLigera || defaultData.opcionLigera;
+  }
+
+  if (clasicaText) {
+    clasicaText.textContent = data.opcionClasica || defaultData.opcionClasica;
+  }
+
+  if (refs.opcionLigeraFlyer) {
+    refs.opcionLigeraFlyer.style.display = data.opcionLigera ? "flex" : "none";
+  }
+
+  if (refs.opcionClasicaFlyer) {
+    refs.opcionClasicaFlyer.style.display = data.opcionClasica ? "flex" : "none";
+  }
+
+  if (refs.optionSep) {
+    const mostrarSeparador = data.opcionLigera && data.opcionClasica;
+    refs.optionSep.style.display = mostrarSeparador ? "block" : "none";
+  }
+
+  const promoHasContent = data.promoTitulo || data.promoPrecio || data.promoTexto;
+  if (refs.promoBox) refs.promoBox.style.display = promoHasContent ? "block" : "none";
+
+  if (refs.promoBox) refs.promoBox.style.top = "";
+  if (refs.bottomArea) {
+    refs.bottomArea.style.top = "";
+    refs.bottomArea.style.bottom = "";
+  }
+
+  setLineVisibility(refs.extraFlyer, data.extra);
+
+  autoScaleText();
+  requestAnimationFrame(() => {
+    updateDynamicLayout();
   });
 }
 
@@ -382,9 +437,23 @@ function handleImageUpload(file, key) {
 
 async function downloadFlyer() {
   try {
+    const images = refs.flyer.querySelectorAll("img");
+
+    await Promise.all(
+      Array.from(images).map((img) => {
+        if (img.complete) return Promise.resolve();
+
+        return new Promise((resolve) => {
+          img.onload = resolve;
+          img.onerror = resolve;
+        });
+      })
+    );
+
     const canvas = await html2canvas(refs.flyer, {
       scale: 2,
       useCORS: true,
+      allowTaint: false,
       backgroundColor: null
     });
 
