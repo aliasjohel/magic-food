@@ -155,10 +155,10 @@ function applyData() {
   data.promoTitulo = refs.inputPromoTitulo?.value?.trim() || "";
   data.promoPrecio = refs.inputPromoPrecio?.value?.trim() || "";
   data.promoTexto = refs.inputPromoTexto?.value?.trim() || "";
-  data.plato1 = refs.inputPlato1?.value?.trim() || defaultData.plato1;
-  data.plato2 = refs.inputPlato2?.value?.trim() || defaultData.plato2;
-  data.plato3 = refs.inputPlato3?.value?.trim() || defaultData.plato3;
-  data.plato4 = refs.inputPlato4?.value?.trim() || defaultData.plato4;
+  data.plato1 = refs.inputPlato1?.value?.trim() || "";
+  data.plato2 = refs.inputPlato2?.value?.trim() || "";
+  data.plato3 = refs.inputPlato3?.value?.trim() || "";
+  data.plato4 = refs.inputPlato4?.value?.trim() || "";
   data.direccion = refs.inputDireccion?.value?.trim() || defaultData.direccion;
   data.alias = refs.inputAlias?.value?.trim() || defaultData.alias;
   data.instagram = refs.inputInstagram?.value?.trim() || defaultData.instagram;
@@ -173,10 +173,23 @@ function applyData() {
   if (refs.promoPrecioFlyer) refs.promoPrecioFlyer.textContent = data.promoPrecio;
   if (refs.promoTextoFlyer) refs.promoTextoFlyer.textContent = data.promoTexto;
 
-  if (refs.plato1Flyer) refs.plato1Flyer.textContent = data.plato1;
-  if (refs.plato2Flyer) refs.plato2Flyer.textContent = data.plato2;
-  if (refs.plato3Flyer) refs.plato3Flyer.textContent = data.plato3;
-  if (refs.plato4Flyer) refs.plato4Flyer.textContent = data.plato4;
+ function toggleMenuItem(textElement, text) {
+  if (!textElement) return;
+
+  const container = textElement.closest(".menu-item");
+
+  if (text && text.trim()) {
+    textElement.textContent = text;
+    if (container) container.style.display = "grid";
+  } else {
+    if (container) container.style.display = "none";
+  }
+}
+
+toggleMenuItem(refs.plato1Flyer, data.plato1);
+toggleMenuItem(refs.plato2Flyer, data.plato2);
+toggleMenuItem(refs.plato3Flyer, data.plato3);
+toggleMenuItem(refs.plato4Flyer, data.plato4);
 
   updateMenuImage(refs.img1Flyer, data.img1);
   updateMenuImage(refs.img2Flyer, data.img2);
@@ -225,20 +238,22 @@ function applyData() {
 }
 
 function autoScaleText() {
-  const menuTexts = document.querySelectorAll(".menu-text");
+ const menuTexts = document.querySelectorAll(".menu-text");
 
-  menuTexts.forEach((item) => {
-    item.style.fontSize = "32px";
-    const length = item.textContent.trim().length;
+menuTexts.forEach((item) => {
+  item.style.fontSize = "46px";
+  const length = item.textContent.trim().length;
 
-    if (length > 48) {
-      item.style.fontSize = "22px";
-    } else if (length > 38) {
-      item.style.fontSize = "26px";
-    } else if (length > 30) {
-      item.style.fontSize = "29px";
-    }
-  });
+  if (length > 60) {
+    item.style.fontSize = "30px";
+  } else if (length > 48) {
+    item.style.fontSize = "34px";
+  } else if (length > 38) {
+    item.style.fontSize = "38px";
+  } else if (length > 28) {
+    item.style.fontSize = "42px";
+  }
+});
 
   if (refs.tituloFlyer) {
     refs.tituloFlyer.style.fontSize = "58px";
